@@ -101,10 +101,10 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
   res
     .status(200)
     .cookie("token", "", {
-      httpOnly: true,
+      // httpOnly: true,
       expires: new Date(Date.now()),
       // expires: new Date(0),
-        // httpOnly: true,
+        httpOnly: true,
     })
     .json({
       success: true,
@@ -120,95 +120,96 @@ export const getUser = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-// export const updateProfile = catchAsyncErrors(async (req, res, next) => {
-//   const newUserData = {
-//     fullName: req.body.fullName,
-//     email: req.body.email,
-//     phone: req.body.phone,
-//     aboutMe: req.body.aboutMe,
-//     githubURL: req.body.githubURL,
-//     instagramURL: req.body.instagramURL,
-//     portfolioURL: req.body.portfolioURL,
-//     facebookURL: req.body.facebookURL,
-//     twitterURL: req.body.twitterURL,
-//     linkedInURL: req.body.linkedInURL,
-//   };
-//   if (req.files && req.files.avatar) {
-//     const avatar = req.files.avatar;
-//     const user = await User.findById(req.user.id);
-//     const profileImageId = user.avatar.public_id;
-//     await cloudinary.uploader.destroy(profileImageId);
-//     const newProfileImage = await cloudinary.uploader.upload(
-//       avatar.tempFilePath,
-//       {
-//         folder: "PORTFOLIO AVATAR",
-//       }
-//     );
-//     newUserData.avatar = {
-//       public_id: newProfileImage.public_id,
-//       url: newProfileImage.secure_url,
-//     };
-//   }
+export const updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    fullName: req.body.fullName,
+    email: req.body.email,
+    phone: req.body.phone,
+    aboutMe: req.body.aboutMe,
+    githubURL: req.body.githubURL,
+    instagramURL: req.body.instagramURL,
+    portfolioURL: req.body.portfolioURL,
+    facebookURL: req.body.facebookURL,
+    twitterURL: req.body.twitterURL,
+    linkedInURL: req.body.linkedInURL,
+  };
+  if (req.files && req.files.avatar) {
+    const avatar = req.files.avatar;
+    const user = await User.findById(req.user.id);
+    const profileImageId = user.avatar.public_id;
+    await cloudinary.uploader.destroy(profileImageId);
+    const newProfileImage = await cloudinary.uploader.upload(
+      avatar.tempFilePath,
+      {
+        folder: "PORTFOLIO AVATAR",
+      }
+    );
+    newUserData.avatar = {
+      public_id: newProfileImage.public_id,
+      url: newProfileImage.secure_url,
+    };
+  }
 
-//   if (req.files && req.files.resume) {
-//     const resume = req.files.resume;
-//     const user = await User.findById(req.user.id);
-//     const resumeFileId = user.resume.public_id;
-//     if (resumeFileId) {
-//       await cloudinary.uploader.destroy(resumeFileId);
-//     }
-//     const newResume = await cloudinary.uploader.upload(resume.tempFilePath, {
-//       folder: "PORTFOLIO RESUME",
-//     });
-//     newUserData.resume = {
-//       public_id: newResume.public_id,
-//       url: newResume.secure_url,
-//     };
-//   }
+  if (req.files && req.files.resume) {
+    const resume = req.files.resume;
+    const user = await User.findById(req.user.id);
+    const resumeFileId = user.resume.public_id;
+    if (resumeFileId) {
+      await cloudinary.uploader.destroy(resumeFileId);
+    }
+    const newResume = await cloudinary.uploader.upload(resume.tempFilePath, {
+      folder: "PORTFOLIO RESUME",
+    });
+    newUserData.resume = {
+      public_id: newResume.public_id,
+      url: newResume.secure_url,
+    };
+  }
 
-//   const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
-//     new: true,
-//     runValidators: true,
-//     useFindAndModify: false,
-//   });
-//   res.status(200).json({
-//     success: true,
-//     message: "Profile Updated!",
-//     user,
-//   });
-// });
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+  res.status(200).json({
+    success: true,
+    message: "Profile Updated!",
+    user,
+  });
+});
 
-// export const updatePassword = catchAsyncErrors(async (req, res, next) => {
-//   const { currentPassword, newPassword, confirmNewPassword } = req.body;
-//   const user = await User.findById(req.user.id).select("+password");
-//   if (!currentPassword || !newPassword || !confirmNewPassword) {
-//     return next(new ErrorHandler("Please Fill All Fields.", 400));
-//   }
-//   const isPasswordMatched = await user.comparePassword(currentPassword);
-//   if (!isPasswordMatched) {
-//     return next(new ErrorHandler("Incorrect Current Password!"));
-//   }
-//   if (newPassword !== confirmNewPassword) {
-//     return next(
-//       new ErrorHandler("New Password And Confirm New Password Do Not Match!")
-//     );
-//   }
-//   user.password = newPassword;
-//   await user.save();
-//   res.status(200).json({
-//     success: true,
-//     message: "Password Updated!",
-//   });
-// });
+ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const { currentPassword, newPassword, confirmNewPassword } = req.body;
+  
+  if (!currentPassword || !newPassword || !confirmNewPassword) {
+     return next(new ErrorHandler("Please Fill All Fields.", 400));
+      }
+      const user = await User.findById(req.user.id).select("+password"); 
+   const isPasswordMatched = await user.comparePassword(currentPassword);
+   if (!isPasswordMatched) {
+     return next(new ErrorHandler("Incorrect Current Password!"));
+   }
+   if (newPassword !== confirmNewPassword) {
+     return next(
+       new ErrorHandler("New Password And Confirm New Password Do Not Match!")
+     );
+  }
+  user.password = newPassword;
+  await user.save();
+  res.status(200).json({
+    success: true,
+    message: "Password Updated!",
+});
+});
 
-// export const getUserForPortfolio = catchAsyncErrors(async (req, res, next) => {
-//   const id = "663296a896e553748ab5b0be";
-//   const user = await User.findById(id);
-//   res.status(200).json({
-//     success: true,
-//     user,
-//   });
-// });
+export const getUserForPortfolio = catchAsyncErrors(async (req, res, next) => {
+  const id = "66b35638b5cde10506d9a0ee";
+  const user = await User.findById(id);
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
 
 // //FORGOT PASSWORD
 // export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
