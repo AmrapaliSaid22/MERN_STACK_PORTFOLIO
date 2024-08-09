@@ -7,7 +7,10 @@ import {dbConnection} from "./database/dbConnection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouters.js"; 
 import userRouter from "./router/userRoutes.js"; 
-
+import timelineRouter from "./router/timelineRoutes.js";
+import applicationRouter from "./router/softwareAllicationRoutes.js";
+import skillsRouter from "./router/skillsRoutes.js";
+import projectRouter from "./router/projectRoutes.js";
 const app = express();
 dotenv.config({ path: "./config/config.env"});
 
@@ -28,26 +31,17 @@ app.use( fileUpload ( {
 } 
 ));
 
-
-// // Route to set a cookie
-// app.get('/setcookie', (req, res) => {
-//     const expires = new Date();
-//     const cookieExpiresInDays = parseInt(process.env.COOKIE_EXPIRES, 10);
-//     expires.setDate(expires.getDate() + cookieExpiresInDays);
-
-//     res.cookie('exampleCookie', 'cookieValue', { expires, httpOnly: true });
-//     res.send('Cookie is set with an expiration date.');
-// });
-
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
-
-
-app.use("/api/v1/message", messageRouter);
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/timeline", timelineRouter);
+app.use("/api/v1/softwareapplication",applicationRouter);
+app.use("/api/v1/skills",skillsRouter);
+app.use("/api/v1/project",projectRouter);
 
 dbConnection();
 app.use(errorMiddleware);
 
  export default app;
+
+ 
 
