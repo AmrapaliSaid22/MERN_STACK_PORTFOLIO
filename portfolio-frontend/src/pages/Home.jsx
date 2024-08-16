@@ -7,6 +7,7 @@ import About from "./sub-Componentes/About";
 // import { ThemeProvider } from "@/components/theme-provider";
 import Portfolio from "./sub-Componentes/Portfolio";
 import Contact from "./sub-Componentes/Contact";
+// import { LogIn } from 'lucide-react';
 
 const Home = () => {
   return (

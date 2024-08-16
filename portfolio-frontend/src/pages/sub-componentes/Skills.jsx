@@ -15,7 +15,7 @@ const Skills = () => {
     getMySkills();
   }, []);
   return (
-    <div className="w-full flex flex-col gap-8 sm:gap-12">
+    <div className="w-full flex mb-8 flex-col gap-8 sm:gap-12">
       <h1 className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold">
         SKILLS
       </h1>

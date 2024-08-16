@@ -7,13 +7,22 @@ import ProjectView from './pages/ProjectView'
 import { ModeToggle } from './components/mode-toggle'
 import { ToastContainer} from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
+  import { LogIn } from 'lucide-react';
 
 function App() {
   
 
   return (
     <>
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <div className="relative">
+    <button className="absolute top-3 right-4 flex items-center gap-2 p-2 bg-blue-500 text-white rounded-lg">
+    <a href="http://localhost:5173/login" target="_blank" rel="noopener noreferrer">
+      <LogIn className="w-6 h-6" />
+      <span>Login</span></a>
+      
+    </button>
+  
+      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme" className=" absolute top-5 left-3 p-3 ">
         <Router>
           <ModeToggle />
           <Routes>
@@ -25,6 +34,7 @@ function App() {
         </Router>
 
         </ThemeProvider>
+        </div>
     </>
   )
 }

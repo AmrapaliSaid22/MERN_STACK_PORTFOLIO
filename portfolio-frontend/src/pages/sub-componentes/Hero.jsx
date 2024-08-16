@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
+import hero from '../../assets/hero.png'
 
 const Hero = () => {
   const [user, setUser] = useState({});
@@ -72,8 +73,14 @@ const Hero = () => {
         </Link>
       </div>
       <p className="mt-8 text-xl tracking-[2px]">{user.aboutMe}</p>
+
+      {/* <div className="flex justify-end items-center h-screen">
+        <img src={hero} alt="" className="max-w-full h-auto"/>
+      </div> */}
       <hr className="my-8 md::my-10 " />
     </div>
+
+    
   );
 };
 

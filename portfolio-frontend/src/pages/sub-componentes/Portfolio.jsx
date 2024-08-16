@@ -23,20 +23,10 @@ const Portfolio = () => {
         <h1
           className="overflow-x-hidden text-[2rem] sm:text-[1.75rem] md:text-[2.2rem] lg:text-[2.8rem] mb-4 font-extrabold"
         >
-          MY PROJECTS{" "}
+          MY PROJECTS
           
         </h1>
-        <h1
-          className="flex sm:hidden gap-4 items-center text-[2rem] sm:text-[2.75rem] 
-          md:text-[3rem] lg:text-[3.8rem] leading-[56px] md:leading-[67px] lg:leading-[90px] 
-          tracking-[15px] mx-auto w-fit font-extrabold about-h1"
-          style={{
-            background: "hsl(222.2 84% 4.9%)",
-          }}
-        >
-          MY <span className="text-tubeLight-effect font-extrabold">WORK</span>
-        </h1>
-        <span className="absolute w-full h-1 top-7 sm:top-7 md:top-8 lg:top-11 z-[-1] bg-slate-200"></span>
+        
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {viewAll

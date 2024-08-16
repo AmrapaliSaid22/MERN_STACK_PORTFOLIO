@@ -43,8 +43,7 @@ const Contact = () => {
            >
             CONTACT ME
           </h1>
-          <span className="absolute w-full h-1 top-7 sm:top-7 
-          md:top-8 lg:top-11 z-[-1] bg-slate-200"></span>
+          
         </div>
         <form onSubmit={handleMessage} className="flex flex-col gap-6">
           <div className="flex flex-col gap-2 px-1.5">
