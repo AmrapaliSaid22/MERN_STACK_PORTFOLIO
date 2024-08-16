@@ -29,6 +29,7 @@ import {
     const { loading, message, error } = useSelector((state) => state.skill);
     const dispatch = useDispatch();
     const handleAddNewSkill = (e) => {
+      e.preventDefault();
       const formData = new FormData();
       formData.append("title", title);
       formData.append("proficiency", proficiency);

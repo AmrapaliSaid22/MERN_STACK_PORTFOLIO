@@ -74,7 +74,7 @@ export const getAllSoftwareApplications = () => async (dispatch) => {
   );
   try {
     const response = await axios.get(
-      "https://mern-stack-portfolio-backend-code.onrender.com/api/v1/softwareapplication/getall",
+      "http://localhost:4000/api/v1/softwareapplication/getall",
       { withCredentials: true }
     );
     dispatch(
@@ -92,14 +92,14 @@ export const getAllSoftwareApplications = () => async (dispatch) => {
   }
 };
 
-export const addNewSoftwareApplication = (data) => async (dispatch) => {
+export const addNewSoftwareApplication = (appData) => async (dispatch) => {
   dispatch(
     softwareApplicationSlice.actions.addNewsoftwareApplicationsRequest()
   );
   try {
     const response = await axios.post(
-      "https://mern-stack-portfolio-backend-code.onrender.com/api/v1/softwareapplication/add",
-      data,
+      "http://localhost:4000/api/v1/softwareapplication/add",
+      appData,
       {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
@@ -126,7 +126,7 @@ export const deleteSoftwareApplication = (id) => async (dispatch) => {
   );
   try {
     const response = await axios.delete(
-      `https://mern-stack-portfolio-backend-code.onrender.com/api/v1/softwareapplication/delete/${id}`,
+      `http://localhost:4000/api/v1/softwareapplication/delete/${id}`,
       {
         withCredentials: true,
       }

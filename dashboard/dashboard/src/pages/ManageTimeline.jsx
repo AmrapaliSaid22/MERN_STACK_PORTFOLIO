@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +31,10 @@ const ManageTimeline = () => {
   );
   const dispatch = useDispatch();
 
+  // const [timelineId, setTimlineId] = useSelector("");
+
   const handleDeleteTimeline = (id) => {
+    // setTimlineId(id);
     dispatch(deleteTimeline(id));
   };
 
@@ -88,13 +90,13 @@ const ManageTimeline = () => {
                             {element.timeline.to ? element.timeline.to : "____"}
                           </TableCell>
                           <TableCell className="flex justify-end">
-                            <Button
+                            <button
                               className="border-red-600 border-2 rounded-full h-8 w-8 flex 
                               justify-center items-center text-red-600  hover:text-slate-50 hover:bg-red-600"
                               onClick={() => handleDeleteTimeline(element._id)}
                             >
                               <Trash2 className="h-5 w-5" />
-                            </Button>
+                            </button>
                           </TableCell>
                         </TableRow>
                       );

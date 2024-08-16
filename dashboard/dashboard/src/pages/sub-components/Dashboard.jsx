@@ -34,9 +34,9 @@ import { clearAllTimelineErrors } from "@/store/slices/timelineSlice";
 import { clearAllProjectErrors } from "@/store/slices/projectSlice";
 const Dashboard = () => {
   const navigateTo = useNavigate();
-  const gotoMangeSkills = () => {
-    navigateTo("/manage/skills");
-  };
+  // const gotoMangeSkills = () => {
+  //   navigateTo("/manage/skills");
+  // };
   const gotoMangeTimeline = () => {
     navigateTo("/manage/timeline");
   };
@@ -123,7 +123,9 @@ const Dashboard = () => {
                   </CardDescription>
                 </CardHeader>
                 <CardFooter>
+                  <Link to = {user.portfolioURL && user.portfolioURL}>
                   <Button>Visit Portfolio</Button>
+                  </Link>
                 </CardFooter>
               </Card>
               <Card className="flex flex-col justify-center">
@@ -145,7 +147,8 @@ const Dashboard = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardFooter>
-                  <Button onClick={gotoMangeSkills}>Manage Skill</Button>
+                  <Link to = {"/manage/skills"}>
+                  <Button>Manage Skill</Button> </Link>
                 </CardFooter>
               </Card>
             </div>
@@ -200,7 +203,8 @@ const Dashboard = () => {
                                 </TableCell>
                                 <TableCell className="text-right">
                                   <Link
-                                    to={element.projectLink}
+                                    to={element.projectLink ? `${element.projectLink}`
+                                  : ""}
                                     target="_blank"
                                   >
                                     <Button>Visit</Button>
@@ -312,16 +316,17 @@ const Dashboard = () => {
                 </Card>
                 <Card>
                   <CardHeader className="px-7 flex items-center justify-between flex-row">
-                    <CardTitle>Timeline</CardTitle>
+                    <CardTitle>Education</CardTitle>
                     <Button onClick={gotoMangeTimeline} className="w-fit">
-                      Manage Timeline
+                      {/* Manage Timeline */}
+                      Edit
                     </Button>
                   </CardHeader>
                   <CardContent>
                     <Table>
                       <TableHeader>
                         <TableRow>
-                          <TableHead>Title</TableHead>
+                          <TableHead>Degree</TableHead>
                           <TableHead className="md:table-cell">From</TableHead>
                           <TableHead className="md:table-cell text-right">
                             To
@@ -340,7 +345,7 @@ const Dashboard = () => {
                                   {element.timeline.from}
                                 </TableCell>
                                 <TableCell className="md:table-cell  text-right">
-                                  {element.timeline.to}
+                                  {element.timeline.to ? `${element.timeline.to}` : "Present"}
                                 </TableCell>
                               </TableRow>
                             );

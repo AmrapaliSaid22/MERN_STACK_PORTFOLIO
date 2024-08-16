@@ -18,6 +18,7 @@ import {
 } from "@/store/slices/projectSlice";
 import SpecialLoadingButton from "./SpecialLoadingButton";
 
+
 const AddProject = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -30,6 +31,7 @@ const AddProject = () => {
   const [deployed, setDeployed] = useState("");
 
   const handleSvg = (e) => {
+    // e.preventDefault();
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -144,6 +146,9 @@ const AddProject = () => {
                           <SelectItem value="Mean">MEAN</SelectItem>
                           <SelectItem value="Next.JS">NEXT.JS</SelectItem>
                           <SelectItem value="React.JS">REACT.JS</SelectItem>
+                          <SelectItem value="Angular">Angular Js</SelectItem>
+                          <SelectItem value="PHP">PHP</SelectItem>
+                          <SelectItem value="Java">Java</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -270,12 +275,12 @@ const AddProject = () => {
             {loading ? (
               <SpecialLoadingButton
                 content={"ADDING NEW PROJECT"}
-                width={"w-56"}
+                width={"w-full"}
               />
             ) : (
               <button
                 type="submit"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-56"
+                className="rounded-md bg-gray-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-800 w-full"
               >
                 Add Project
               </button>

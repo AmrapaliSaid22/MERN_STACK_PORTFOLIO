@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const ViewProject = () => {
-//   return (
-//     <div>ViewProject</div>
-//   )
-// }
-
-// export default ViewProject
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -29,7 +19,7 @@ const ViewProject = () => {
   useEffect(() => {
     const getProject = async () => {
       await axios
-        .get(`https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/get/${id}`, {
+        .get(`http://localhost:4000/api/v1/project/get/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -122,9 +112,9 @@ const ViewProject = () => {
                   <Link
                     className="text-sky-700"
                     target="_blank"
-                    to={projectLink}
+                    to={projectLink ? projectLink : "/"}
                   >
-                    {projectLink}
+                    {projectLink ? projectLink : "Still Not Deployed."}
                   </Link>
                 </div>
               </div>

@@ -45,7 +45,7 @@ const UpdateProject = () => {
   useEffect(() => {
     const getProject = async () => {
       await axios
-        .get(`https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/get/${id}`, {
+        .get(`http://localhost:4000/api/v1/project/get/${id}`, {
           withCredentials: true,
         })
         .then((res) => {
@@ -200,6 +200,10 @@ const UpdateProject = () => {
                           <SelectItem value="Mean">MEAN</SelectItem>
                           <SelectItem value="Next.JS">NEXT.JS</SelectItem>
                           <SelectItem value="React.JS">REACT.JS</SelectItem>
+                          <SelectItem value="Java">Java</SelectItem>
+                          <SelectItem value="PHP">PHP</SelectItem>
+                          <SelectItem value="Angular Js">Angular Js</SelectItem>
+                          <SelectItem value="HTML,CSS,JavaScript">HTML5,CSS3,JavaScript</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
@@ -269,14 +273,14 @@ const UpdateProject = () => {
 
           <div className="mt-6 flex items-center justify-end gap-x-6">
             {loading ? (
-              <SpecialLoadingButton content={"Updating"} width={"w-52"} />
+              <SpecialLoadingButton content={"Updating"} width={"w-full"} />
             ) : (
-              <button
+              <Button
                 type="submit"
-                className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 w-52"
+                className="rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 w-full"
               >
                 Update
-              </button>
+              </Button>
             )}
           </div>
         </form>

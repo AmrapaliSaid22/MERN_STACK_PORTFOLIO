@@ -88,7 +88,7 @@ export const getAllProjects = () => async (dispatch) => {
   dispatch(projectSlice.actions.getAllProjectsRequest());
   try {
     const response = await axios.get(
-      "https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/getall",
+      "http://localhost:4000/api/v1/project/getall",
       { withCredentials: true }
     );
     dispatch(
@@ -102,12 +102,12 @@ export const getAllProjects = () => async (dispatch) => {
   }
 };
 
-export const addNewProject = (data) => async (dispatch) => {
+export const addNewProject = (projectData) => async (dispatch) => {
   dispatch(projectSlice.actions.addNewProjectRequest());
   try {
     const response = await axios.post(
-      "https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/add",
-      data,
+      "http://localhost:4000/api/v1/project/add",
+      projectData,
       {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
@@ -125,7 +125,7 @@ export const deleteProject = (id) => async (dispatch) => {
   dispatch(projectSlice.actions.deleteProjectRequest());
   try {
     const response = await axios.delete(
-      `https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/delete/${id}`,
+      `http://localhost:4000/api/v1/project/delete/${id}`,
       {
         withCredentials: true,
       }
@@ -142,7 +142,7 @@ export const updateProject = (id, newData) => async (dispatch) => {
   dispatch(projectSlice.actions.updateProjectRequest());
   try {
     const response = await axios.put(
-      `https://mern-stack-portfolio-backend-code.onrender.com/api/v1/project/update/${id}`,
+      `http://localhost:4000/api/v1/project/update/${id}`,
       newData,
       {
         withCredentials: true,

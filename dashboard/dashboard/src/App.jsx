@@ -38,12 +38,12 @@ const App = () => {
         <Route path="/" element= {<HomePage/>}/>
         <Route path="/login" element= {<Login/>} />
         <Route path="/password/forget" element= {<ForgetPassword/>}/>
-        <Route path="/password/reset/:token " element= {<ResetPassword/>}/>
-        <Route path="/manage/skills " element= {<ManageSkills/>}/>
-        <Route path="/manage/timeline " element= {<ManageTimeline/>}/>
-        <Route path="/manage/projects " element= {<ManageProjects/>}/>
-        <Route path="/view/project/:id " element= {<ViewProject/>}/>
-        <Route path="/update/project/:id " element= {<UpdateProject/>}/>
+        <Route path="/password/reset/:token" element= {<ResetPassword/>}/>
+        <Route path="/manage/skills" element= {<ManageSkills/>}/>
+        <Route path="/manage/timeline" element= {<ManageTimeline/>}/>
+        <Route path="/manage/projects" element= {<ManageProjects/>}/>
+        <Route path="/view/project/:id" element= {<ViewProject/>}/>
+        <Route path="/update/project/:id" element= {<UpdateProject/>}/>
       </Routes>
 
       <ToastContainer position="bottom-right" theme="dark"/>
